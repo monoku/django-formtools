@@ -5,3 +5,6 @@
 static/.sass-cache
 media/
 _res/css/.sass-cache
+build/
+dist/
+django_formtools.egg-info/
