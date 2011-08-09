@@ -11,7 +11,7 @@
         {%else%}
             <div class="row">
                 {{ field.label_tag }}
-                <div class="field">{{field}}<span></span></div>
+                <div class="field{%if field.field.required%} required{%endif%}">{{field}}<span></span></div>
                 <div class="help">{{ field.help_text }}</div>
                 {{ field.errors }}
             </div>
