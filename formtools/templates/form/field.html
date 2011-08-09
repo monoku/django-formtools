@@ -1,21 +1,17 @@
     {%if not field.is_hidden%}
+        <div class="row field-{{ field.name }}">
         {%if placeholder%}
-            <div class="row field-{{ field.name }}">
-                <div class="field{%if field.field.required%} required{%endif%}">
-                    {{field}}
-                    <script type="text/javascript">var anteriores = document.getElementsByName("{{field.name}}");var lefield = anteriores[anteriores.length-1];lefield.setAttribute("placeholder", "{{ field.label}}");lefield.setAttribute("title", "{{ field.label}}");lefield.className=lefield.className+" placeholder-el";</script>
-                    <span></span></div>
-                <div class="help">{{ field.help_text }}</div>
-                {{ field.errors }}
-            </div>
+            <div class="field{%if field.field.required%} required{%endif%}">
+                {{field}}
+                <script type="text/javascript">var anteriores = document.getElementsByName("{{field.name}}");var lefield = anteriores[anteriores.length-1];lefield.setAttribute("placeholder", "{{ field.label}}");lefield.setAttribute("title", "{{ field.label}}");lefield.className=lefield.className+" placeholder-el";</script>
+                <span></span></div>
         {%else%}
-            <div class="row">
-                {{ field.label_tag }}
-                <div class="field{%if field.field.required%} required{%endif%}">{{field}}<span></span></div>
-                <div class="help">{{ field.help_text }}</div>
-                {{ field.errors }}
-            </div>
+            {{ field.label_tag }}
+            <div class="field{%if field.field.required%} required{%endif%}">{{field}}<span></span></div>
         {%endif%}
+            <div class="help field-{{ field.name }}">{{ field.help_text }}</div>
+            <div class="error field-{{ field.name }}">{{ field.errors }}</div>
+        </div>
     {%else%}
         {{field}}
     {%endif%}
