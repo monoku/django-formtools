@@ -9,8 +9,8 @@
             {{ field.label_tag }}
             <div class="field{%if field.field.required%} required{%endif%}">{{field}}<span></span></div>
         {%endif%}
-            <div class="help field-{{ field.name }}">{{ field.help_text }}</div>
-            <div class="error field-{{ field.name }}">{{ field.errors }}</div>
+            <div class="help help-{{ field.name }}">{{ field.help_text }}</div>
+            <div class="error error-{{ field.name }}">{{ field.errors }}</div>
         </div>
     {%else%}
         {{field}}
