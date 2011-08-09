@@ -3,7 +3,7 @@
         {%if placeholder%}
             <div class="field{%if field.field.required%} required{%endif%}">
                 {{field}}
-                <script type="text/javascript">var anteriores = document.getElementsByName("{{field.name}}");var lefield = anteriores[anteriores.length-1];lefield.setAttribute("placeholder", "{{ field.label}}");lefield.setAttribute("title", "{{ field.label}}");lefield.className=lefield.className+" placeholder-el";</script>
+                <script type="text/javascript">(function(){var l=document.getElementsByName("{{field.name}}"),f= l[l.length-1];f.setAttribute("placeholder","{{ field.label}}");f.setAttribute("title", "{{ field.label}}");f.className=f.className+" placeholder-el";})();</script>
                 <span></span></div>
         {%else%}
             {{ field.label_tag }}
