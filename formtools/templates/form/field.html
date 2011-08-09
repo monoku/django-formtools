@@ -1,6 +1,6 @@
     {%if not field.is_hidden%}
         {%if placeholder%}
-            <div class="row">
+            <div class="row field-{{ field.name }}">
                 <div class="field{%if field.field.required%} required{%endif%}">
                     {{field}}
                     <script type="text/javascript">var anteriores = document.getElementsByName("{{field.name}}");var lefield = anteriores[anteriores.length-1];lefield.setAttribute("placeholder", "{{ field.label}}");lefield.setAttribute("title", "{{ field.label}}");lefield.className=lefield.className+" placeholder-el";</script>
