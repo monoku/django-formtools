@@ -77,7 +77,7 @@ class RenderFormNode(template.Node):
             fields = ""
             for field in form:
                 fields += render_to_string(self.template_field, {'field':field}, context_instance=context)
-            c['fields'] = mark_safe(fields)
+            #c['fields'] = mark_safe(fields)
             return mark_safe(render_to_string(self.template_form, c, context_instance=context))
         except template.VariableDoesNotExist:
             return ''
