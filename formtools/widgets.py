@@ -3,7 +3,7 @@ HTML Widget classes
 Modifying Django
 """
 
-from util import flatatt
+from django.forms.util import flatatt
 
 from django.utils.html import escape, conditional_escape
 from django.utils.encoding import StrAndUnicode, force_unicode
