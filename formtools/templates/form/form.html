@@ -1,12 +1,12 @@
 <form id="form-{{ action_id }}" action="{{ action }}" method="POST" {{ upload }}>
 	{% csrf_token %}			
-	{{ fields }}
     {% if form.prefix %}
         <input type="hidden" name="prefix" value="{{ form.prefix }}" />
     {% endif %}
+	{{ fields }}
 	<div class="button-container">
-		<div class="button">			
+		<span class="button">			
 			<input type="submit" value="{{button_name}}">
-		</div>
+		</span>
 	</div>
 </form>
