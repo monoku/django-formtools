@@ -1,12 +1,16 @@
+{% if not only_fields %}
 <form id="form-{{ action_id }}" action="{{ action }}" method="POST" {{ upload }}>
+{% endif %}
 	{% csrf_token %}			
     {% if form.prefix %}
         <input type="hidden" name="prefix" value="{{ form.prefix }}" />
     {% endif %}
 	{{ fields }}
+{% if not only_fields %}
 	<div class="button-container">
 		<span class="button">			
 			<input type="submit" value="{{button_name}}">
 		</span>
 	</div>
 </form>
+{% endif %}

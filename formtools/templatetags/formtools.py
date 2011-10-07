@@ -50,6 +50,7 @@ class RenderFormNode(template.Node):
         self.action_url = kwargs.get('action_url', '/')
         self.template_form = kwargs.get('template_form', 'form/form.html')
         self.template_field = kwargs.get('template_field', 'form/field.html')
+        self.only_field = kwargs.get('only_fields', False)
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
@@ -68,6 +69,7 @@ class RenderFormNode(template.Node):
             c['form'] = form
             c['placeholder'] = self.placeholder
             c['button_name'] = self.button_name
+            c['only_fields'] = self.only_fields
             c['action'] = self.action
             c['action_id'] = self.action_id
             if self.upload_files:
