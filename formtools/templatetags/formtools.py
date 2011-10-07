@@ -50,7 +50,7 @@ class RenderFormNode(template.Node):
         self.action_url = kwargs.get('action_url', '/')
         self.template_form = kwargs.get('template_form', 'form/form.html')
         self.template_field = kwargs.get('template_field', 'form/field.html')
-        self.only_field = kwargs.get('only_fields', False)
+        self.only_fields = kwargs.get('only_fields', False)
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
