@@ -51,12 +51,15 @@ class RenderFormNode(template.Node):
         self.template_form = kwargs.get('template_form', 'form/form.html')
         self.template_field = kwargs.get('template_field', 'form/field.html')
         self.only_fields = kwargs.get('only_fields', False)
+        
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
         else:
             self.action = self.action_url
             self.action_id = '-'.join(self.action_url.split('/'))
+        self.action_id = 'form-'+self.action_id
+        self.form_id = kwargs.get('id',self.action_id)
         self.upload_files = kwargs.get('upload_files', False)
 
     def render(self, context):
@@ -71,7 +74,8 @@ class RenderFormNode(template.Node):
             c['button_name'] = self.button_name
             c['only_fields'] = self.only_fields
             c['action'] = self.action
-            c['action_id'] = self.action_id
+            c['form_id'] = self.form_id
+            #c['action_id'] = self.action_id
             if self.upload_files:
                 c['upload'] = mark_safe('enctype="multipart/form-data"')
             else:
