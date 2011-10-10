@@ -1,5 +1,5 @@
 {% if not only_fields %}
-<form id="{{ form_id }}" action="{{ action }}" method="POST" {{ upload }}>
+<form id="{{ form_id }}" action="{{ action }}" method="POST" {% if form.is_multipart %}enctype="multipart/form-data"{%endif%}>
 {% endif %}
 	{% csrf_token %}			
     {% if form.prefix %}
