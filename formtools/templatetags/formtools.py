@@ -46,7 +46,7 @@ class RenderFormNode(template.Node):
             self.form = form
         self.placeholder = kwargs.get('placeholder', False)
         self.button_name = kwargs.get('button_name', _('Send'))
-        self.dijit_tooltip = kwargs.get('dijit_tooltip', None)
+        self.dijit_tooltip = kwargs.get('dijit_tooltip', False)
         self.action_name = kwargs.get('action_name', None)
         self.action_url = kwargs.get('action_url', '/')
         self.template_form = kwargs.get('template_form', 'form/form.html')
