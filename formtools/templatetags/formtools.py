@@ -46,6 +46,7 @@ class RenderFormNode(template.Node):
             self.form = form
         self.placeholder = kwargs.get('placeholder', False)
         self.button_name = kwargs.get('button_name', _('Send'))
+        self.dijit_tooltip = kwargs.get('dijit_tooltip', None)
         self.action_name = kwargs.get('action_name', None)
         self.action_url = kwargs.get('action_url', '/')
         self.template_form = kwargs.get('template_form', 'form/form.html')
@@ -72,6 +73,7 @@ class RenderFormNode(template.Node):
             c['form'] = form
             c['placeholder'] = self.placeholder
             c['button_name'] = self.button_name
+            c['dijit_tooltip'] = self.dijit_tooltip
             c['only_fields'] = self.only_fields
             c['action'] = self.action
             c['form_id'] = self.form_id

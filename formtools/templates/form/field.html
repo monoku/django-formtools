@@ -9,10 +9,14 @@
                     </span>
                     {% if field.help_text %}
                     <span class="help help-{{ field.name }}" id='tooltip_{{field.name|slugify}}'>
+                        {% if dijit_tooltip %}
                         <span class="text-node">?</span>
                         <span dojoType="dijit.Tooltip" connectId="tooltip_{{field.name|slugify}}" position="below">
                         {{ field.help_text }}
                         </span>
+                        {% else %}
+                        {{ field.help_text }}
+                        {% endif %}
                     </span>
                     {% endif %}
                 </span>
