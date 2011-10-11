@@ -84,7 +84,9 @@ class RenderFormNode(template.Node):
                 c['upload'] = ''
             fields = ""
             for field in form:
-                fields += render_to_string(self.template_field, {'field':field}, context_instance=context)
+                d = {'field':field}
+                d.update(c)
+                fields += render_to_string(self.template_field, d, context_instance=context)
             c['fields'] = mark_safe(fields)
             return mark_safe(render_to_string(self.template_form, c, context_instance=context))
         except template.VariableDoesNotExist:
