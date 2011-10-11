@@ -7,12 +7,14 @@
                     <span class='decorator'>
                         {{ field.label_tag }}
                     </span>
+                    {% if field.help_text %}
                     <span class="help help-{{ field.name }}" id='tooltip_{{field.name|slugify}}'>
                         <span class="text-node">?</span>
                         <span dojoType="dijit.Tooltip" connectId="tooltip_{{field.name|slugify}}" position="below">
                         {{ field.help_text }}
                         </span>
                     </span>
+                    {% endif %}
                 </span>
                 {% endif %}
             {% endif %}
