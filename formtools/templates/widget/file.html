@@ -1,0 +1,8 @@
+<span class='input-image-file'>
+	<span class='actual'>Imagen actual: </span>
+	<img src="{{field.value}}" />
+	<a href="{{field.value}}">{{field.value}}</a> 
+	<label><input type="checkbox" name="logo-clear" /> No usar imagen</label>
+	<span>Modificar: </span>
+	<input type="file" name="logo" id="id_logo" {% if field.value %}class="change"{% endif %}>
+</span>
