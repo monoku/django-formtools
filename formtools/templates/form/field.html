@@ -27,13 +27,7 @@
                 <span class='decorator'>
                     {{field}}
                     {% if placeholder %}{% spaceless %}
-                    <script type="text/javascript">(function(){
-                        var l=document.getElementsByName("{{field.name}}"),
-                            f= l[l.length-1];
-                        f.setAttribute("placeholder","{{ field.label}}");
-                        f.setAttribute("title", "{{ field.label}}");
-                        f.className = f.className+" placeholder-el";})();
-                    </script>
+                    <script type="text/javascript">(function(){var l=document.getElementsByName("{{field.name}}"),f= l[l.length-1];f.setAttribute("placeholder","{{ field.label}}");f.setAttribute("title", "{{ field.label}}");f.className = f.className+" placeholder-el";})();</script>
                     {% endspaceless %}{% endif %}
                 </span>
             </span>
