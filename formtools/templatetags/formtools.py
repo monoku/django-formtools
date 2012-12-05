@@ -97,3 +97,10 @@ def render_form(parser, token):
     args = token.split_contents()
     tag, opts, kwargs = split_args(args)
     return RenderFormNode(*opts,**kwargs)
+
+
+@register.simple_tag()
+def render_with_placeholder(field):
+    res = unicode(field)
+    pos = res.find('>')
+    return res[:pos] + 'placeholder="%s"' % field.label + res[pos:]

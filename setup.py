@@ -2,10 +2,12 @@
 # -*- coding: utf-8 -*-
 
 import os
+import codecs
+
 
 # Use setuptools if we can
 try:
-    from setuptools.core import setup
+    from setuptools import setup, find_packages
 except ImportError:
     from distutils.core import setup
 
@@ -16,6 +18,10 @@ root_dir = os.path.dirname(__file__)
 if root_dir != '':
     os.chdir(root_dir)
 monoku_dir = 'formtools'
+
+def read(fname):
+    return codecs.open(os.path.join(os.path.dirname(__file__), fname)).read()
+
 
 for dirpath, dirnames, filenames in os.walk(monoku_dir):
     # Ignore dirnames that start with '.'
@@ -51,7 +57,7 @@ setup(
         "Programming Language :: Python :: 2.6",
         "Topic :: Software Development"
     ],
-    packages=packages,
+    packages=find_packages(),
     data_files=data_files,
     install_requires=[
         'django',
