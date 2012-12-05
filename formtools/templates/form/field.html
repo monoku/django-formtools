@@ -1,3 +1,4 @@
+    {% load formtools %}
     {%if not field.is_hidden%}
         <div class="field" id='field-{{ field.name }}'>
 
@@ -26,9 +27,9 @@
             <span class='box box-input'>
                 <span class='decorator'>
                     {% if placeholder %}
-                    {% render_with_placeholder field %}
+                        {% render_with_placeholder field %}
                     {% else %}
-                    {{field}}
+                        {{field}}
                     {% endif %}
                 </span>
             </span>
