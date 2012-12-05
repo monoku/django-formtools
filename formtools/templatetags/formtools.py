@@ -107,13 +107,9 @@ def render_with_placeholder(field):
     res = unicode(field)
     pos = res.find('>')
 
-    print field
     try:
         label = field.label._proxy____args[0]
     except:
         label = field.label
-    print res[:pos - 1] + 'placeholder="%s"' % field.label + res[pos:]
-    print '#' * 30
 
-    # return res[:pos] + 'placeholder="%s"' % field.label + res[pos:]
     return res[:pos - 1] + 'placeholder="%s"' % label + res[pos:]
