@@ -1,5 +1,5 @@
     {% load formtools %}
-    {%if not field.is_hidden%}
+    {%if not field.is_hidden%
         <div class="field" id='field-{{ field.name }}'>
 
             {% if not field.type == 'checkbox' and not field.type == 'radio' %}
