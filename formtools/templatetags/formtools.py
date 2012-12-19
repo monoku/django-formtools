@@ -112,4 +112,4 @@ def render_with_placeholder(field):
     except:
         label = field.label
 
-    return res[:pos - 1] + 'placeholder="%s"' % label + res[pos:]
+    return res[:pos] + ' placeholder="%s" ' % label + res[pos:]
