@@ -54,6 +54,7 @@ class RenderFormNode(template.Node):
         self.template_field = kwargs.get('template_field', 'form/field.html')
         self.only_fields = kwargs.get('only_fields', False)
         self.fieldset = kwargs.get('fieldset', None)
+
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
@@ -70,6 +71,8 @@ class RenderFormNode(template.Node):
                 form = self.form.resolve(context)
             else:
                 form = self.form
+            if self.fieldset:
+                self.fieldset = context[self.fieldset]
             c = {}
             c['form'] = form
             c['placeholder'] = self.placeholder
