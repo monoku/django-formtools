@@ -92,7 +92,7 @@ class RenderFormNode(template.Node):
                     fields_rendered = ''
                     for field_name in fields:
                         field = None
-                        for field in form.fields:
+                        for field in form:
                             if field_name == field.name:
                                 d = {'field': field}
                                 d.update(c)
