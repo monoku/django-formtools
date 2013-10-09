@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 
 register = template.Library()
 
+
 def split_args(args):
     #TODO hacer mejor y mover:
     #los parametros son posicionales
@@ -24,11 +25,11 @@ def split_args(args):
         if '=' in arg:
             opt, value = arg.split('=')
             opt = str(opt)
-            if value[0]==value[-1] and (value[0]=="'" or value[0]=='"'):
+            if value[0] == value[-1] and (value[0] == "'" or value[0] == '"'):
                 kwargs[opt] = value[1:-1]
-            elif value=='True':
+            elif value == 'True':
                 kwargs[opt] = True
-            elif value=='False':
+            elif value == 'False':
                 kwargs[opt] = False
             else:
                 kwargs[opt] = value
@@ -52,15 +53,19 @@ class RenderFormNode(template.Node):
         self.template_form = kwargs.get('template_form', 'form/form.html')
         self.template_field = kwargs.get('template_field', 'form/field.html')
         self.only_fields = kwargs.get('only_fields', False)
+<<<<<<< HEAD
         self.fieldset = kwargs.get('fieldset', None)
+=======
+
+>>>>>>> ae87987448791e6f645f18b4fe909304c3b6f76a
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
         else:
             self.action = self.action_url
             self.action_id = '-'.join(self.action_url.split('/'))
-        self.action_id = 'form-'+self.action_id
-        self.form_id = kwargs.get('id',self.action_id)
+        self.action_id = 'form-' + self.action_id
+        self.form_id = kwargs.get('id', self.action_id)
         self.upload_files = kwargs.get('upload_files', False)
 
     def render(self, context):
@@ -105,15 +110,23 @@ class RenderFormNode(template.Node):
         except template.VariableDoesNotExist:
             return ''
 
+
 @register.tag
 def render_form(parser, token):
     args = token.split_contents()
     tag, opts, kwargs = split_args(args)
-    return RenderFormNode(*opts,**kwargs)
+
+    return RenderFormNode(*opts, **kwargs)
 
 
 @register.simple_tag()
 def render_with_placeholder(field):
     res = unicode(field)
     pos = res.find('>')
-    return res[:pos] + 'placeholder="%s"' % field.label + res[pos:]
+
+    try:
+        label = field.label._proxy____args[0]
+    except:
+        label = field.label
+
+    return res[:pos] + ' placeholder="%s" ' % label + res[pos:]
