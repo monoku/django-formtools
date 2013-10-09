@@ -91,10 +91,13 @@ class RenderFormNode(template.Node):
                 for key, fields in self.fieldset.items():
                     fields_rendered = ''
                     for field_name in fields:
-                        field = form.fields[field_name]
-                        d = {'field': field_name}
-                        d.update(c)
-                        fields_rendered += render_to_string(self.template_field, d, context_instance=context)
+                        field = None
+                        for field in form.fields:
+                            if field_name == field.name:
+                                d = {'field': field}
+                                d.update(c)
+                                fields_rendered += render_to_string(self.template_field, d, context_instance=context)
+                                break
                     fields_string += '<h3>%s</h3><div class="block-fields">%s</div>' % (key, fields_rendered)
             else:
                 for field in form:
