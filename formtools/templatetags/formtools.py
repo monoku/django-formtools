@@ -52,7 +52,7 @@ class RenderFormNode(template.Node):
         self.template_form = kwargs.get('template_form', 'form/form.html')
         self.template_field = kwargs.get('template_field', 'form/field.html')
         self.only_fields = kwargs.get('only_fields', False)
-        
+        self.fieldset = kwargs.get('fieldset', None)
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
@@ -83,10 +83,23 @@ class RenderFormNode(template.Node):
             else:
                 c['upload'] = ''
             fields = ""
-            for field in form:
-                d = {'field':field}
-                d.update(c)
-                fields += render_to_string(self.template_field, d, context_instance=context)
+            if self.fieldset:
+                for key, fields in self.fieldset:
+                    res = ''
+                    for field_name in fields:
+                        field = form.fields[field_name]
+                        d = {'field':field}
+                        d.update(c)
+                        fields_rendered += render_to_string(self.template_field, d, context_instance=context)
+                    fields += """<h3>%s</h3>
+                    <div class="block-fields">
+                        %s
+                    </div>""" % (key, fields_rendered)
+            else:
+                for field in form:
+                    d = {'field':field}
+                    d.update(c)
+                    fields += render_to_string(self.template_field, d, context_instance=context)
             c['fields'] = mark_safe(fields)
             return mark_safe(render_to_string(self.template_form, c, context_instance=context))
         except template.VariableDoesNotExist:
