@@ -101,7 +101,6 @@ class RenderFormNode(template.Node):
                     fields_string += '<h3>%s</h3><div class="block-fields">%s</div>' % (key, fields_rendered)
             else:
                 for field in form:
-                    import ipdb; ipdb.set_trace()
                     d = {'field':field}
                     d.update(c)
                     fields_string += render_to_string(self.template_field, d, context_instance=context)
