@@ -89,7 +89,7 @@ class RenderFormNode(template.Node):
             fields = ""
             if self.fieldset:
                 for key, fields in self.fieldset.items():
-                    res = ''
+                    fields_rendered = ''
                     for field_name in fields:
                         field = form.fields[field_name]
                         d = {'field':field}
