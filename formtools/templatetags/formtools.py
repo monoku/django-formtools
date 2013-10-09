@@ -86,7 +86,7 @@ class RenderFormNode(template.Node):
                 c['upload'] = mark_safe('enctype="multipart/form-data"')
             else:
                 c['upload'] = ''
-            fields = ""
+            fields_string = ""
             if self.fieldset:
                 for key, fields in self.fieldset.items():
                     fields_rendered = ''
@@ -95,16 +95,13 @@ class RenderFormNode(template.Node):
                         d = {'field':field}
                         d.update(c)
                         fields_rendered += render_to_string(self.template_field, d, context_instance=context)
-                    fields += """<h3>%s</h3>
-                    <div class="block-fields">
-                        %s
-                    </div>""" % (key, fields_rendered)
+                    fields_string += '<h3>%s</h3><div class="block-fields">%s</div>' % (key, fields_rendered)
             else:
                 for field in form:
                     d = {'field':field}
                     d.update(c)
-                    fields += render_to_string(self.template_field, d, context_instance=context)
-            c['fields'] = mark_safe(fields)
+                    fields_string += render_to_string(self.template_field, d, context_instance=context)
+            c['fields'] = mark_safe(fields_string)
             return mark_safe(render_to_string(self.template_form, c, context_instance=context))
         except template.VariableDoesNotExist:
             return ''
