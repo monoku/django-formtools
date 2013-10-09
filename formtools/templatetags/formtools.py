@@ -93,6 +93,7 @@ class RenderFormNode(template.Node):
                     for field_name in fields:
                         field = form.fields[field_name]
                         print field
+                        import ipdb; ipdb.set_trace()
                         d = {'field': field}
                         d.update(c)
                         fields_rendered += render_to_string(self.template_field, d, context_instance=context)
