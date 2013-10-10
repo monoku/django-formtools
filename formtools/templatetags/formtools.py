@@ -88,7 +88,8 @@ class RenderFormNode(template.Node):
                 c['upload'] = ''
             fields_string = ""
             if self.fieldset:
-                for key, fields in self.fieldset:
+                for fieldset_group in self.fieldset:
+                    key, fields = fieldset_group
                     fields_rendered = ''
                     for field_name in fields:
                         field = None
