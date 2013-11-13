@@ -6,7 +6,7 @@
                 {%if not placeholder%}
                 <span class='box box-label'>
                     <span class='decorator'>
-                        {{ field.label_tag }}
+                        {{ field.label_tag }} {% if field.field.required and mark_required %} {{mark_required}} {% endif %}
                     </span>
                     {% if field.help_text %}
                     <span class="help help-{{ field.name }}" id='tooltip_{{field.name|slugify}}'>

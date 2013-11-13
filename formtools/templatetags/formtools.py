@@ -54,7 +54,7 @@ class RenderFormNode(template.Node):
         self.template_field = kwargs.get('template_field', 'form/field.html')
         self.only_fields = kwargs.get('only_fields', False)
         self.fieldset = kwargs.get('fieldset', None)
-
+        self.mark_required = kwargs.get('mark_required', '')
         if self.action_name:
             self.action = reverse(self.action_name)
             self.action_id = self.action_name
@@ -81,6 +81,7 @@ class RenderFormNode(template.Node):
             c['only_fields'] = self.only_fields
             c['action'] = self.action
             c['form_id'] = self.form_id
+            c['mark_required'] = self.mark_required
             #c['action_id'] = self.action_id
             if self.upload_files:
                 c['upload'] = mark_safe('enctype="multipart/form-data"')
