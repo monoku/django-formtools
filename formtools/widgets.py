@@ -8,7 +8,10 @@ from itertools import chain
 import time
 from urlparse import urljoin
 
-import django.utils.copycompat as copy
+try:
+    import django.utils.copycompat as copy
+except:
+    import copy
 from django.conf import settings
 from django.utils.datastructures import MultiValueDict, MergeDict
 from django.utils.html import escape, conditional_escape
